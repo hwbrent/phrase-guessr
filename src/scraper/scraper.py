@@ -62,11 +62,37 @@ def get_language_resources() -> dict:
         # the text that you see on the page. we'll get the name of the language from this
         text = li.text
 
-        # get the name of the language. it's in the text before a colon. for example:
-        # 'Zulu: recordings | phrases | language'
-        colon_index = text.index(":")
-        language = text[:colon_index]
-        print(language)
+        # get the name of the language. it's in the text before a colon.
+        # examples:
+        # "Sardinian (Campidanese)"
+        # "Yiddish"
+        full_language = text[: text.index(":")]
+
+        # main language is the language part without the dialect (which will be in
+        # brackets, if it exists)
+        main_language = full_language
+
+        # check if this is a dialect of a main language
+        dialect = None
+
+        is_dialect = "(" in full_language and ")" in full_language
+        if is_dialect:
+            # get the dialect. it's within brackets like so:
+            # "Sardinian (Campidanese)"
+            dialect_start = text.index("(") + 1
+            dialect_end = text.index(")")
+            dialect = text[dialect_start:dialect_end]
+
+            # remove the dialect from the main language
+            main_language = main_language.replace(f" ({dialect})", "")
+
+        # the three components of the language. examples:
+        # ('Welsh', 'Welsh', None)
+        # ('Portuguese (Brazilian)', 'Portuguese', 'Brazilian')
+        language_components = tuple([full_language, main_language, dialect])
+
+        print(language_components)
+
         print()
 
 
