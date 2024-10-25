@@ -1,8 +1,13 @@
 import requests
 from bs4 import BeautifulSoup
 
-SOUP_PARSER = "html.parser"  # the name of the parser used with BeautifulSoup
 SOUND_FILES_URL = "https://www.omniglot.com/soundfiles/"
+
+# i just went to the url above, then looked in the network tab to see what the header
+# value was
+USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:131.0) Gecko/20100101 Firefox/131.0"
+
+SOUP_PARSER = "html.parser"  # the name of the parser used with BeautifulSoup
 
 
 def get(url: str) -> str:
@@ -11,8 +16,10 @@ def get(url: str) -> str:
     resulting text
     """
 
-    # make the request
-    response = requests.get(url)
+    # make the request. specifying the header seems to reduce the probability of getting
+    # a 403 ('forbidden', i.e. server understood the request but refused to process it)
+    headers = {"User-Agent": USER_AGENT}
+    response = requests.get(url, headers=headers)
 
     # handle any errors
     response.raise_for_status()
