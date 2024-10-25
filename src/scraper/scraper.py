@@ -1,4 +1,5 @@
 import requests
+from bs4 import BeautifulSoup
 
 SOUND_FILES_URL = "https://www.omniglot.com/soundfiles/"
 
