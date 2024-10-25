@@ -1,5 +1,10 @@
+from urllib.parse import urljoin
+from pprint import PrettyPrinter
+
 import requests
 from bs4 import BeautifulSoup
+
+pp = PrettyPrinter(indent=4)
 
 SOUND_FILES_URL = "https://www.omniglot.com/soundfiles/"
 
@@ -58,7 +63,6 @@ def get_language_resources() -> dict:
     data = {}
 
     for li in lis:
-        print()
         # the text that you see on the page. we'll get the name of the language from this
         text = li.text
 
@@ -91,9 +95,26 @@ def get_language_resources() -> dict:
         # ('Portuguese (Brazilian)', 'Portuguese', 'Brazilian')
         language_components = tuple([full_language, main_language, dialect])
 
-        print(language_components)
+        # get the 'recordings', 'phrases' and 'language' urls. they are
+        # within three anchor tags
+        anchors = li.find_all("a")
 
-        print()
+        # the hrefs are relative to the url of this page.
+        # example: '../language/phrases/zulu.php'
+        # so we need to convert them to full urls
+        relative_hrefs = [a["href"] for a in anchors]
+        complete = lambda href: urljoin(SOUND_FILES_URL, href)
+        full_hrefs = [complete(href) for href in relative_hrefs]
+
+        recordings, phrases, language = full_hrefs
+
+        data[language_components] = {
+            "recordings": recordings,
+            "phrases": phrases,
+            "language": language,
+        }
+
+    return data
 
 
-get_language_resources()
+pp.pprint(get_language_resources())
