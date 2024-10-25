@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const HOME_URL = 'https://www.omniglot.com/soundfiles/';
+export const HOME_URL = 'https://www.omniglot.com/soundfiles/';
 
 // i just went to the url above, then looked in the network tab to see what the header
 // value was
@@ -11,7 +11,7 @@ const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:131.0) Geck
  * text
  * @param {string} url - the url of the resource to fetch
  */
-async function get(url) {
+export async function get(url) {
     // make the request. specifying the header seems to reduce the probability of
     // getting a 403 ('forbidden', i.e. server understood the request but refused to
     // process it)
