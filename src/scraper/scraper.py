@@ -36,3 +36,38 @@ def get_html(url) -> BeautifulSoup:
     text = get(url)
     soup = BeautifulSoup(text, SOUP_PARSER)
     return soup
+
+
+def get_language_resources() -> dict:
+    """
+    Gets the info shown under the heading "Recordings of useful foreign phrases" on
+    the page located at https://www.omniglot.com/soundfiles/
+    """
+    soup = get_html(SOUND_FILES_URL)
+
+    # The data we care about is in a <ul> tag. Each language's data is inside that
+    # in <li>s. The first <ul> in the page is the menu bar at the top, but the second
+    # is the one we want.
+
+    uls = soup.find_all("ul")
+    ul = uls[1]
+
+    # All the entries in the list
+    lis = ul.find_all("li")
+
+    data = {}
+
+    for li in lis:
+        print()
+        # the text that you see on the page. we'll get the name of the language from this
+        text = li.text
+
+        # get the name of the language. it's in the text before a colon. for example:
+        # 'Zulu: recordings | phrases | language'
+        colon_index = text.index(":")
+        language = text[:colon_index]
+        print(language)
+        print()
+
+
+get_language_resources()
