@@ -106,10 +106,10 @@ async function getResources(): Promise<Resource[]> {
 }
 
 /**
- * @returns A complete map wherein the keys are {@link Language}s and the
- * values are {@link Resource}
+ * @returns A complete {@link LanguageToResourceMap map} whose keys are
+ * {@link Language}s and values are {@link Resource}
  */
-async function getLanguagesAndResources(): Promise<LanguageToResourceMap> {
+export async function getLanguagesAndResources(): Promise<LanguageToResourceMap> {
     const lis = await getMainLIs();
 
     const languages = mapLanguages(lis);
