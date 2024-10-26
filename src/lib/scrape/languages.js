@@ -3,7 +3,7 @@ import { JSDOM } from 'jsdom';
 import { HOME_URL, get } from './utils.js';
 
 /**
- * @summary A `Document` for the page at {@link HOME_URL}
+ * A `Document` for the page at {@link HOME_URL}
  * @typedef {Document} HomeDocument
  */
 
