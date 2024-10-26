@@ -2,23 +2,13 @@ import { JSDOM } from 'jsdom';
 
 import { HOME_URL, get } from '../utils/utils';
 
+import { LanguageObject } from './types';
+
 /**
  * A `Document` for the page at {@link HOME_URL}
  *
  * @typedef {Document} HomeDocument
  */
-
-/**
- * An object containing data on a unique language
- *
- * @typedef {Object} LanguageObject
- * @property {string} full  The full string representing the language, including
- * the dialect in brackets (if there is one)
- * @property {string} main  The main component of `full`, i.e. `full` without the
- * dialect (if there is one)
- * @property {string} dialect  The component of `full` which is between brackets
- */
-
 
 
 /**
@@ -61,7 +51,7 @@ function getLIs(list) {
  * @param {HTMLLIElement} li - an `<li>` from the return value of {@link getLIs}
  * @returns {LanguageObject}
  */
-function getLanguageFromLI(li) {
+function getLanguageFromLI(li): LanguageObject {
     let full;
     let main;
     let dialect = null;
