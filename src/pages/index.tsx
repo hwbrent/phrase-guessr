@@ -31,7 +31,8 @@ export const getServerSideProps = async () => ({
 });
 
 /**
- * @summary Handle client-side redirection
+ * @summary A custom React hook to grab the date path for today and redirect to
+ * it immediately
  */
 const useRedirect = (router) => {
     const path = getPath();
