@@ -21,24 +21,34 @@ export interface LanguageObject {
 }
 
 /**
+ * A URL to a zip file containing mp3 recordings of a language
+ * 
+ * @example 'https://www.omniglot.com/soundfiles/gujarati/gujaratiphrases.zip'
+ */
+export type RecordingsResourceURL = URL['href'];
+
+/**
+ * A URL to a page containing a table of "Useful <language> phrases"
+ * 
+ * @example 'https://www.omniglot.com/language/phrases/kannada.php'
+ */
+export type PhrasesResourceURL = URL['href'];
+
+/**
+ * A URL to a page containing background info on the language
+ * 
+ * @example 'https://www.omniglot.com/writing/manx.htm'
+ */
+export type LanguageResourceURL = URL['href'];
+
+/**
  * An object containing URLs pointing to a given language's further resources within
  * {@link https://www.omniglot.com}
  */
 export interface LanguageResources {
-    /**
-     * A URL to a zip file containing mp3 recordings of the given language
-     */
-    recordings: URL["href"];
-
-    /**
-     * A URL to a page containing a table of "Useful <language> phrases"
-     */
-    phrases: URL["href"];
-
-    /**
-     * A URL to a page containing background info on the language
-     */
-    language: URL["href"];
+    recordings: RecordingsResourceURL;
+    phrases: PhrasesResourceURL;
+    language: LanguageResourceURL;
 }
 
 /**
