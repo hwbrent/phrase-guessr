@@ -1,19 +1,4 @@
 /**
- * @returns A new `Date` object representing today, but with no time component (meaning
- * the time is midnight)
- */
-function getTodayMidnight(): Date {
-    const now = new Date();
-
-    const year = now.getFullYear();
-    const month = now.getMonth();
-    const date = now.getDate();
-
-    const midnight = new Date(year, month, date);
-    return midnight;
-}
-
-/**
  * @summary Pseudo-random number generator based on the Linear Congruential Generator
  * algorithm
  * @see {@link https://en.wikipedia.org/wiki/Linear_congruential_generator}
@@ -27,11 +12,17 @@ function getRandomNumber(seed: number): number {
 }
 
 /**
+ * @param date in the format 'yyyy-mm-dd'
  * @returns A random number between 0 and 1. Today's date is used as the seed, so no
  * matter when you call this function on a given day, the output will be the same
  */
-function getRandomNumberForToday(): number {
-    const seed = getTodayMidnight().valueOf();
+export function getRandomNumberForDate(date: string): number {
+    // get 'date' in milliseconds since epoch
+    const seed = new Date(date).valueOf();
+
+    // use that number as a seed to generate a random number
     const randomNumber = getRandomNumber(seed);
+
+    // return the random number
     return randomNumber;
 }
