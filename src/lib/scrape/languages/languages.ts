@@ -1,7 +1,7 @@
 import { JSDOM } from 'jsdom';
 
 import { HOME_URL, get } from '../utils/utils';
-import { LanguageObject, HomeDocument } from './types';
+import { LanguageObject, LanguageResources, HomeDocument } from './types';
 
 /**
  * @returns {HomeDocument}

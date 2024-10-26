@@ -21,6 +21,27 @@ export interface LanguageObject {
 }
 
 /**
+ * An object containing URLs pointing to a given language's further resources within
+ * {@link https://www.omniglot.com}
+ */
+export interface LanguageResources {
+    /**
+     * A URL to a zip file containing mp3 recordings of the given language
+     */
+    recordings: URL["href"];
+
+    /**
+     * A URL to a page containing a table of "Useful <language> phrases"
+     */
+    phrases: URL["href"];
+
+    /**
+     * A URL to a page containing background info on the language
+     */
+    language: URL["href"];
+}
+
+/**
  * A `Document` for the page at https://www.omniglot.com/soundfiles/
  */
 export type HomeDocument = Document;
