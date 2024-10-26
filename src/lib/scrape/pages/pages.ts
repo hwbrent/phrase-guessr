@@ -4,7 +4,7 @@ import { HomeDocument } from './types';
 
 export const HOME_URL = 'https://www.omniglot.com/soundfiles/';
 
-async function getPage(url: string): Promise<Document> {
+export async function getPage(url: string): Promise<Document> {
     const resp = await get(url);
     const html = resp.data;
 

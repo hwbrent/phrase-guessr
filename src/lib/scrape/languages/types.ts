@@ -24,6 +24,12 @@ export interface Language {
 }
 
 /**
+ * A URL to a page containing a table of "Useful <language> phrases"
+ * @example 'https://www.omniglot.com/language/phrases/kannada.php'
+ */
+export type PhrasesURL = URL['href'];
+
+/**
  * An object containing URLs pointing to a given language's further resources within
  * {@link https://www.omniglot.com}
  */
@@ -38,7 +44,7 @@ export interface Resource {
      * A URL to a page containing a table of "Useful <language> phrases"
      * @example 'https://www.omniglot.com/language/phrases/kannada.php'
      */
-    phrases: URL['href'];
+    phrases: PhrasesURL;
 
     /**
      * A URL to a page containing background info on the language
