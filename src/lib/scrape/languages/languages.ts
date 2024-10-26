@@ -29,10 +29,10 @@ function getMainList(document: HomeDocument): HTMLUListElement {
 
 /**
  * @param {HTMLUListElement} list - the return value of {@link getMainList}
- * @returns {Array<HTMLLIElement>} the `<li>` within the main `<ul>` in
+ * @returns {HTMLLIElement[]} the `<li>` within the main `<ul>` in
  * {@link HomeDocument}
  */
-function getLIs(list: HTMLUListElement): Array<HTMLLIElement> {
+function getLIs(list: HTMLUListElement): HTMLLIElement[] {
     const collection = list.getElementsByTagName('li')
     const array = Array.from(collection);
     return array;
@@ -101,14 +101,14 @@ function getResourceFromLI(li: HTMLLIElement): LanguageResources {
 /**
  * @summary Gets the pertinent `<li>`s from the main page (at {@link HOME_URL})
  */
-async function getMainLIs(): Promise<Array<HTMLLIElement>> {
+async function getMainLIs(): Promise<HTMLLIElement[]> {
     const document = await getHomePage();
     const mainList = getMainList(document);
     const lis = getLIs(mainList);
     return lis;
 }
 
-async function main(): Promise<Array<LanguageObject>> {
+async function main(): Promise<LanguageObject[]> {
     const lis = await getMainLIs();
 
     const languages = lis.map(getLanguageFromLI);
