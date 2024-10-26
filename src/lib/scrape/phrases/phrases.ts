@@ -25,6 +25,10 @@ function getRows(table: HTMLTableElement): HTMLTableRowElement[] {
     return array;
 }
 
+function parseRawPhrase(raw: string) {
+    console.log(raw);
+}
+
 function getPhraseData(row: HTMLTableRowElement) {
     // the row has two <td>s - one for the english phrase, and one for the equivalents
     // in the other language
@@ -35,6 +39,12 @@ function getPhraseData(row: HTMLTableRowElement) {
     // there are potentially multiple phrases in the other language. if so, they will
     // be separated by a <br> tag
     const phrasesRaw = otherData.innerHTML.split('<br>');
+
+    console.log('-----')
+    const parsed = phrasesRaw.map(parseRawPhrase);
+    console.log('-----')
+
+    return parsed;
 }
 
 const document = await getPhrasesPage('https://www.omniglot.com/language/phrases/afrikaans.php')
