@@ -138,13 +138,3 @@ async function getResourceFromLanguage(obj: Language): Promise<Resource> {
     const resource = getResourceFromLI(li);
     return resource;
 }
-
-async function main(): Promise<Language[]> {
-    const lis = await getMainLIs();
-
-    const languages = lis.map(getLanguageFromLI);
-
-    return languages;
-}
-
-console.log(main());
