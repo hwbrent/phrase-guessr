@@ -1,20 +1,12 @@
 import { JSDOM } from 'jsdom';
 
 import { HOME_URL, get } from '../utils/utils';
-
-import { LanguageObject } from './types';
-
-/**
- * A `Document` for the page at {@link HOME_URL}
- *
- * @typedef {Document} HomeDocument
- */
-
+import { LanguageObject, HomeDocument } from './types';
 
 /**
  * @returns {HomeDocument}
  */
-async function getHomePage() {
+async function getHomePage(): Promise<HomeDocument> {
     const resp = await get(HOME_URL);
     const html = resp.data;
 
@@ -30,7 +22,7 @@ async function getHomePage() {
  * second <ul> on the page, and contains the language info (as well as hrefs to other
  * important resources)
  */
-function getMainList(document) {
+function getMainList(document: HomeDocument) {
     const uls = document.getElementsByTagName('ul');
     return uls[1];
 }
