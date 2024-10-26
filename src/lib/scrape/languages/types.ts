@@ -47,8 +47,8 @@ export type LanguageResourceURL = URL['href'];
  */
 export interface LanguageResources {
     recordings: RecordingsResourceURL;
-    phrases: PhrasesResourceURL;
-    language: LanguageResourceURL;
+    phrases:    PhrasesResourceURL;
+    language:   LanguageResourceURL;
 }
 
 /**
