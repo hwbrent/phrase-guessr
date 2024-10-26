@@ -3,9 +3,6 @@ import { JSDOM } from 'jsdom';
 import { HOME_URL, get } from '../utils/utils';
 import { LanguageObject, LanguageResources, HomeDocument } from './types';
 
-/**
- * @returns {HomeDocument}
- */
 async function getHomePage(): Promise<HomeDocument> {
     const resp = await get(HOME_URL);
     const html = resp.data;
@@ -17,10 +14,10 @@ async function getHomePage(): Promise<HomeDocument> {
 }
 
 /**
- * @param {HomeDocument} document
- * @returns {HTMLUListElement} the main list on the page that we care about. it's the
- * second <ul> on the page, and contains the language info (as well as hrefs to other
- * important resources)
+ * @param document
+ * @returns the main list on the page that we care about. it's the second <ul> on
+ * the page, and contains the language info (as well as hrefs to other important
+ * resources)
  */
 function getMainList(document: HomeDocument): HTMLUListElement {
     const uls = document.getElementsByTagName('ul');
@@ -28,9 +25,8 @@ function getMainList(document: HomeDocument): HTMLUListElement {
 }
 
 /**
- * @param {HTMLUListElement} list - the return value of {@link getMainList}
- * @returns {HTMLLIElement[]} the `<li>` within the main `<ul>` in
- * {@link HomeDocument}
+ * @param list - the return value of {@link getMainList}
+ * @returns the `<li>` within the main `<ul>` in {@link HomeDocument}
  */
 function getLIs(list: HTMLUListElement): HTMLLIElement[] {
     const collection = list.getElementsByTagName('li')
@@ -39,9 +35,7 @@ function getLIs(list: HTMLUListElement): HTMLLIElement[] {
 }
 
 /**
- * 
- * @param {HTMLLIElement} li - an `<li>` from the return value of {@link getLIs}
- * @returns {LanguageObject}
+ * @param li - an `<li>` from the return value of {@link getLIs}
  */
 function getLanguageFromLI(li: HTMLLIElement): LanguageObject {
     let full;
