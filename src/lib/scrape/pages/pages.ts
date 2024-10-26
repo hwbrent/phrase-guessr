@@ -1,6 +1,7 @@
 import { get, toHTML } from "../utils/utils";
 import { HomeDocument } from './types';
 
+export const BASE_URL = 'https://www.omniglot.com'
 export const HOME_URL = 'https://www.omniglot.com/soundfiles/';
 
 export async function getPage(url: string): Promise<Document> {
