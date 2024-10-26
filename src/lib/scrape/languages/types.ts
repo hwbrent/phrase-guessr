@@ -17,7 +17,7 @@ export interface Language {
     /**
      * The component of `full` which is between brackets
      */
-    dialect: string | null;
+    dialect?: string;
 }
 
 /**
