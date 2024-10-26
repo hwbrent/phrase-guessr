@@ -4,14 +4,14 @@
  */
 export interface Language {
     /**
-     * The full string representing the language, including the dialect in brackets
+     * The full string representing the language, including {@link dialect} in brackets
      * (if there is one)
      * @example "Chinese (Cantonese)"
      */
     full: string;
 
     /**
-     * The main component of {@link full}, i.e. {@link full} without the dialect (if there is one)
+     * The main component of {@link full}, i.e. {@link full} without {@link dialect} (if there is one)
      * @example "Chinese"
      */
     main: string;
