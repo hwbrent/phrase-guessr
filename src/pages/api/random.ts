@@ -1,6 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-function getTodayMidnight() {
+/**
+ * @returns A new `Date` object representing today, but with no time component (meaning
+ * the time is midnight)
+ */
+function getTodayMidnight(): Date {
     const now = new Date();
 
     const year = now.getFullYear();
@@ -28,7 +32,7 @@ function getRandomNumber(seed: number): number {
  * @returns A random number between 0 and 1. Today's date is used as the seed, so no
  * matter when you call this function on a given day, the output will be the same
  */
-function getRandomNumberForToday() {
+function getRandomNumberForToday(): number {
     const seed = getTodayMidnight().valueOf();
     const randomNumber = getRandomNumber(seed);
     return randomNumber;
@@ -37,7 +41,7 @@ function getRandomNumberForToday() {
 type ResponseData = {
   message: string
 }
- 
+
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
