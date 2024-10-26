@@ -98,12 +98,18 @@ function getResourceFromLI(li: HTMLLIElement): LanguageResources {
     return { recordings, phrases, language }
 }
 
-async function main(): Promise<Array<LanguageObject>> {
+/**
+ * @summary Gets the pertinent `<li>`s from the main page (at {@link HOME_URL})
+ */
+async function getMainLIs(): Promise<Array<HTMLLIElement>> {
     const document = await getHomePage();
-
     const mainList = getMainList(document);
-
     const lis = getLIs(mainList);
+    return lis;
+}
+
+async function main(): Promise<Array<LanguageObject>> {
+    const lis = await getMainLIs();
 
     const languages = lis.map(getLanguageFromLI);
 
