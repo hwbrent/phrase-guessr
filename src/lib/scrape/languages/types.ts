@@ -45,13 +45,13 @@ export type LanguageResourceURL = URL['href'];
  * An object containing URLs pointing to a given language's further resources within
  * {@link https://www.omniglot.com}
  */
-export interface LanguageResources {
+export interface Resource {
     recordings: RecordingsResourceURL;
     phrases:    PhrasesResourceURL;
     language:   LanguageResourceURL;
 }
 
-export type LanguageToResourceMap = Map<LanguageObject, LanguageResources>;
+export type LanguageToResourceMap = Map<LanguageObject, Resource>;
 
 /**
  * A `Document` for the page at https://www.omniglot.com/soundfiles/

@@ -1,7 +1,7 @@
 import { JSDOM } from 'jsdom';
 
 import { HOME_URL, get } from '../utils/utils';
-import { LanguageObject, LanguageResources, LanguageToResourceMap, HomeDocument } from './types';
+import { LanguageObject, Resource, LanguageToResourceMap, HomeDocument } from './types';
 
 async function getHomePage(): Promise<HomeDocument> {
     const resp = await get(HOME_URL);
@@ -72,7 +72,7 @@ function getLanguageFromLI(li: HTMLLIElement): LanguageObject {
     return { full, main, dialect };
 }
 
-function getResourceFromLI(li: HTMLLIElement): LanguageResources {
+function getResourceFromLI(li: HTMLLIElement): Resource {
     // within the <li> are three <a>s whose hrefs direct us to resources for the
     // given language.
     const anchorsCollection = li.getElementsByTagName('a');
@@ -111,14 +111,14 @@ async function getLanguages(): Promise<LanguageObject[]> {
 
 const mapResources = (lis) => lis.map(getResourceFromLI);
 
-async function getResources(): Promise<LanguageResources[]> {
+async function getResources(): Promise<Resource[]> {
     const lis = await getMainLIs();
     return mapResources(lis);
 }
 
 /**
  * @returns A complete map wherein the keys are {@link LanguageObject}s and the
- * values are {@link LanguageResources}
+ * values are {@link Resource}
  */
 async function getLanguagesAndResources(): Promise<LanguageToResourceMap> {
     const lis = await getMainLIs();
@@ -136,7 +136,7 @@ async function getLanguagesAndResources(): Promise<LanguageToResourceMap> {
  * @param obj
  * @returns The resources corresponding to the given language in the {@link obj} param
  */
-async function getResourceFromLanguage(obj: LanguageObject): Promise<LanguageResources> {
+async function getResourceFromLanguage(obj: LanguageObject): Promise<Resource> {
     // grab the full language name
     const { full } = obj;
 
