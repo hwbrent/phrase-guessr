@@ -1,7 +1,7 @@
 import { JSDOM } from 'jsdom';
 
 import { HOME_URL, get } from '../utils/utils';
-import { LanguageObject, Resource, LanguageToResourceMap, HomeDocument } from './types';
+import { Language, Resource, LanguageToResourceMap, HomeDocument } from './types';
 
 async function getHomePage(): Promise<HomeDocument> {
     const resp = await get(HOME_URL);
@@ -37,7 +37,7 @@ function getLIs(list: HTMLUListElement): HTMLLIElement[] {
 /**
  * @param li - an `<li>` from the return value of {@link getLIs}
  */
-function getLanguageFromLI(li: HTMLLIElement): LanguageObject {
+function getLanguageFromLI(li: HTMLLIElement): Language {
     let full;
     let main;
     let dialect = null;
@@ -104,7 +104,7 @@ async function getMainLIs(): Promise<HTMLLIElement[]> {
 
 const mapLanguages = (lis) => lis.map(getLanguageFromLI);
 
-async function getLanguages(): Promise<LanguageObject[]> {
+async function getLanguages(): Promise<Language[]> {
     const lis = await getMainLIs();
     return mapLanguages(lis);
 }
@@ -117,7 +117,7 @@ async function getResources(): Promise<Resource[]> {
 }
 
 /**
- * @returns A complete map wherein the keys are {@link LanguageObject}s and the
+ * @returns A complete map wherein the keys are {@link Language}s and the
  * values are {@link Resource}
  */
 async function getLanguagesAndResources(): Promise<LanguageToResourceMap> {
@@ -136,7 +136,7 @@ async function getLanguagesAndResources(): Promise<LanguageToResourceMap> {
  * @param obj
  * @returns The resources corresponding to the given language in the {@link obj} param
  */
-async function getResourceFromLanguage(obj: LanguageObject): Promise<Resource> {
+async function getResourceFromLanguage(obj: Language): Promise<Resource> {
     // grab the full language name
     const { full } = obj;
 
@@ -151,7 +151,7 @@ async function getResourceFromLanguage(obj: LanguageObject): Promise<Resource> {
     return resource;
 }
 
-async function main(): Promise<LanguageObject[]> {
+async function main(): Promise<Language[]> {
     const lis = await getMainLIs();
 
     const languages = lis.map(getLanguageFromLI);

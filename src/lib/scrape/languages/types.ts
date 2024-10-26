@@ -2,7 +2,7 @@
 /**
  * An object containing data on a unique language
  */
-export interface LanguageObject {
+export interface Language {
     /**
      * The full string representing the language, including the dialect in brackets
      * (if there is one)
@@ -51,7 +51,7 @@ export interface Resource {
     language:   LanguageResourceURL;
 }
 
-export type LanguageToResourceMap = Map<LanguageObject, Resource>;
+export type LanguageToResourceMap = Map<Language, Resource>;
 
 /**
  * A `Document` for the page at https://www.omniglot.com/soundfiles/
