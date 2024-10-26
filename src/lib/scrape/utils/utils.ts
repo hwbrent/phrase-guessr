@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
+import { JSDOM } from 'jsdom';
 
 // i just went to the url above, then looked in the network tab to see what the header
 // value was
@@ -32,4 +33,10 @@ export function urljoin(...params: string[]): URL['href'] {
 
     const combined = new URL(rest.join('/'), base);
     return combined.href;
+}
+
+export function toHTML(str: string): Document {
+    const dom = new JSDOM(str);
+    const document = dom.window.document;
+    return document;
 }
