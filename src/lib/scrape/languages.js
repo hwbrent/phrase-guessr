@@ -31,12 +31,25 @@ function getMainList(document) {
     return uls[1];
 }
 
+/**
+ * @param {HTMLUListElement} list - the return value of {@link getMainList}
+ * @returns {Array<HTMLLIElement>} the `<li>` within the main `<ul>` in
+ * {@link HomeDocument}
+ */
+function getLIs(list) {
+    const collection = list.getElementsByTagName('li')
+    const array = Array.from(collection);
+    return array;
+}
+
 async function main() {
     const document = await getHomePage();
 
     const mainList = getMainList(document);
 
-    console.log(mainList.outerHTML);
+    const lis = getLIs(mainList);
+
+    console.log(lis);
 }
 
 main()
