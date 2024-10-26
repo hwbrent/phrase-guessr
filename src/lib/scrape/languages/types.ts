@@ -11,13 +11,13 @@ export interface Language {
     full: string;
 
     /**
-     * The main component of `full`, i.e. `full` without the dialect (if there is one)
+     * The main component of {@link full}, i.e. {@link full} without the dialect (if there is one)
      * @example "Chinese"
      */
     main: string;
 
     /**
-     * The component of `full` which is between brackets
+     * The component of {@link full} which is between brackets
      * @example "Cantonese"
      */
     dialect?: string;
