@@ -20,10 +20,3 @@ export async function get(url: string): Promise<AxiosResponse> {
 
     return response;
 }
-
-/**
- * @summary Fetches the basic info from {@link HOME_URL}
- * @description Basically just the languages and the urls of the three
- * resources available for each one
- */
-function getBascInfo() {}
