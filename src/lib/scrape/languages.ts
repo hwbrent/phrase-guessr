@@ -1,6 +1,6 @@
 import { JSDOM } from 'jsdom';
 
-import { HOME_URL, get } from './utils.js';
+import { HOME_URL, get } from './utils';
 
 /**
  * A `Document` for the page at {@link HOME_URL}
@@ -108,4 +108,4 @@ async function main() {
     return languages;
 }
 
-main()
+console.log(main());
