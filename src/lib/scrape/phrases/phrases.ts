@@ -17,6 +17,11 @@ function getTable(document: PagesDocument): HTMLTableElement {
 function getRows(table: HTMLTableElement): HTMLTableRowElement[] {
     const trs = table.getElementsByTagName('tr'); // rows
     const array = Array.from(trs);
+
+    // remove the first row, since it's the header of the table, and we don't care
+    // about it
+    array.shift();
+
     return array;
 }
 
