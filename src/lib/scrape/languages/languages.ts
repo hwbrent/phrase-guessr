@@ -102,6 +102,16 @@ async function getMainLIs(): Promise<HTMLLIElement[]> {
     return lis;
 }
 
+async function getLanguages(): Promise<LanguageObject[]> {
+    const lis = await getMainLIs();
+    return lis.map(getLanguageFromLI);
+}
+
+async function getResources(): Promise<LanguageResources[]> {
+    const lis = await getMainLIs();
+    return lis.map(getResourceFromLI);
+}
+
 async function main(): Promise<LanguageObject[]> {
     const lis = await getMainLIs();
 
