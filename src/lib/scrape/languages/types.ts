@@ -6,16 +6,19 @@ export interface Language {
     /**
      * The full string representing the language, including the dialect in brackets
      * (if there is one)
+     * @example "Chinese (Cantonese)"
      */
     full: string;
 
     /**
      * The main component of `full`, i.e. `full` without the dialect (if there is one)
+     * @example "Chinese"
      */
     main: string;
 
     /**
      * The component of `full` which is between brackets
+     * @example "Cantonese"
      */
     dialect?: string;
 }
