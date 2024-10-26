@@ -6,5 +6,14 @@ async function getPhrasesPage(url: PhrasesURL): Promise<PagesDocument> {
     return getPage(url);
 }
 
-const result = await getPhrasesPage('https://www.omniglot.com/language/phrases/afrikaans.php')
-console.log(result.body.outerHTML);
+/**
+ * @returns The main `<table>` in the document, containing the phrase data
+ */
+function getTable(document: PagesDocument): HTMLTableElement {
+    const [table] = document.getElementsByTagName('table');
+    return table;
+}
+
+const document = await getPhrasesPage('https://www.omniglot.com/language/phrases/afrikaans.php')
+const table = getTable(document);
+console.log(table.outerHTML);
