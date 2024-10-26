@@ -1,7 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
 
-export const HOME_URL = 'https://www.omniglot.com/soundfiles/';
-
 // i just went to the url above, then looked in the network tab to see what the header
 // value was
 const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:131.0) Gecko/20100101 Firefox/131.0';

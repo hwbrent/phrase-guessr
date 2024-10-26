@@ -1,17 +1,7 @@
-import { JSDOM } from 'jsdom';
+import { getHomePage, HOME_URL } from '../pages/pages';
+import { HomeDocument } from '../pages/types';
 
-import { HOME_URL, get } from '../utils/utils';
-import { Language, Resource, LanguageToResourceMap, HomeDocument } from './types';
-
-async function getHomePage(): Promise<HomeDocument> {
-    const resp = await get(HOME_URL);
-    const html = resp.data;
-
-    const dom = new JSDOM(html);
-    const document = dom.window.document;
-
-    return document;
-}
+import { Language, Resource, LanguageToResourceMap } from './types';
 
 /**
  * @returns the main list on the page that we care about. it's the second <ul> on

@@ -48,8 +48,3 @@ export interface Resource {
 }
 
 export type LanguageToResourceMap = Map<Language, Resource>;
-
-/**
- * A `Document` for the page at https://www.omniglot.com/soundfiles/
- */
-export type HomeDocument = Document;
