@@ -20,3 +20,16 @@ export async function get(url: string): Promise<AxiosResponse> {
 
     return response;
 }
+
+/**
+ * @summary Function to mimic python's `urljoin` function to concatenate segments of
+ * a URL
+ * @param params Any number of segments of URL. Must be relative
+ * @see {@link https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urljoin}
+ */
+export function urljoin(...params: string[]): URL['href'] {
+    let [ base, ...rest ] = params;
+
+    const combined = new URL(rest.join('/'), base);
+    return combined.href;
+}
