@@ -1,7 +1,8 @@
 import { getPage } from "../pages/pages";
 import { PhrasesURL } from "../languages/types";
+import { PagesDocument } from "../pages/types";
 
-async function getPhrasesPage(url: PhrasesURL) {
+async function getPhrasesPage(url: PhrasesURL): Promise<PagesDocument> {
     return getPage(url);
 }
 
