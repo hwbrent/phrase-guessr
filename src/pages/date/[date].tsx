@@ -1,19 +1,17 @@
 import { useRouter } from 'next/router';
 
-import { getLanguagesAndResources } from '../../lib/scrape/languages/languages';
+import { getLanguages, getResources } from '../../lib/scrape/languages/languages';
 
 /**
  * @summary Pre-render the page at build with the resources not dependent on the
  * specific day (i.e. the languages and corresponding resources)
  */
 export async function getStaticProps() {
-    const map = await getLanguagesAndResources();
-
-    const languages = Array.from(map.keys());
-    const resources = Array.from(map.values());
+    const languages = await getLanguages();
+    const resources = await getResources();
 
     // Props will be passed to page component
-    return { props: { map, languages, resources } }
+    return { props: { languages, resources } }
 }
 
 /**

@@ -100,7 +100,7 @@ export async function getLanguages(): Promise<Language[]> {
 
 const mapResources = (lis) => lis.map(getResourceFromLI);
 
-async function getResources(): Promise<Resource[]> {
+export async function getResources(): Promise<Resource[]> {
     const lis = await getMainLIs();
     return mapResources(lis);
 }
@@ -109,7 +109,7 @@ async function getResources(): Promise<Resource[]> {
  * @returns A complete {@link LanguageToResourceMap map} whose keys are
  * {@link Language}s and values are {@link Resource}
  */
-export async function getLanguagesAndResources(): Promise<LanguageToResourceMap> {
+async function getLanguagesAndResources(): Promise<LanguageToResourceMap> {
     const lis = await getMainLIs();
 
     const languages = mapLanguages(lis);
