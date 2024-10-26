@@ -14,6 +14,13 @@ function getTable(document: PagesDocument): HTMLTableElement {
     return table;
 }
 
+function getRows(table: HTMLTableElement): HTMLTableRowElement[] {
+    const trs = table.getElementsByTagName('tr'); // rows
+    const array = Array.from(trs);
+    return array;
+}
+
 const document = await getPhrasesPage('https://www.omniglot.com/language/phrases/afrikaans.php')
 const table = getTable(document);
-console.log(table.outerHTML);
+const rows = getRows(table);
+console.log(rows);
