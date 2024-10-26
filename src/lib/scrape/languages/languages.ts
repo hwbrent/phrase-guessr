@@ -93,7 +93,7 @@ async function getMainLIs(): Promise<HTMLLIElement[]> {
 
 const mapLanguages = (lis) => lis.map(getLanguageFromLI);
 
-async function getLanguages(): Promise<Language[]> {
+export async function getLanguages(): Promise<Language[]> {
     const lis = await getMainLIs();
     return mapLanguages(lis);
 }
