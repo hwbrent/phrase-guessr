@@ -2,7 +2,7 @@
 /**
  * An object containing data on a unique language
  */
-export interface Language {
+export type Language = {
     /**
      * The full string representing the language, including {@link dialect} in brackets
      * (if there is one)
@@ -33,7 +33,7 @@ export type PhrasesURL = URL['href'];
  * An object containing URLs pointing to a given language's further resources within
  * {@link https://www.omniglot.com}
  */
-export interface Resource {
+export type Resource = {
     /**
      * A URL to a zip file containing mp3 recordings of a language
      * @example 'https://www.omniglot.com/soundfiles/gujarati/gujaratiphrases.zip'

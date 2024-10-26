@@ -1,5 +1,5 @@
 
-export interface TargetLanguagePhrase {
+export type TargetLanguagePhrase = {
     /**
      * The phrase in the target language corresponding to the english
      * @example "My skeertuig is vol palings"
@@ -16,7 +16,7 @@ export interface TargetLanguagePhrase {
 /**
  * Data for one English phrase and its equivalent(s) in the other given language
  */
-export interface PhraseData {
+export type PhraseData = {
     /**
      * The english phrase
      * @example
