@@ -14,7 +14,6 @@ async function getHomePage(): Promise<HomeDocument> {
 }
 
 /**
- * @param document
  * @returns the main list on the page that we care about. it's the second <ul> on
  * the page, and contains the language info (as well as hrefs to other important
  * resources)
@@ -133,7 +132,6 @@ async function getLanguagesAndResources(): Promise<LanguageToResourceMap> {
 }
 
 /**
- * @param obj
  * @returns The resources corresponding to the given language in the {@link obj} param
  */
 async function getResourceFromLanguage(obj: Language): Promise<Resource> {
