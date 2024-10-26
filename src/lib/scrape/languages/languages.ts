@@ -22,7 +22,7 @@ async function getHomePage(): Promise<HomeDocument> {
  * second <ul> on the page, and contains the language info (as well as hrefs to other
  * important resources)
  */
-function getMainList(document: HomeDocument) {
+function getMainList(document: HomeDocument): HTMLUListElement {
     const uls = document.getElementsByTagName('ul');
     return uls[1];
 }
@@ -32,7 +32,7 @@ function getMainList(document: HomeDocument) {
  * @returns {Array<HTMLLIElement>} the `<li>` within the main `<ul>` in
  * {@link HomeDocument}
  */
-function getLIs(list) {
+function getLIs(list: HTMLUListElement): Array<HTMLLIElement> {
     const collection = list.getElementsByTagName('li')
     const array = Array.from(collection);
     return array;
@@ -43,7 +43,7 @@ function getLIs(list) {
  * @param {HTMLLIElement} li - an `<li>` from the return value of {@link getLIs}
  * @returns {LanguageObject}
  */
-function getLanguageFromLI(li): LanguageObject {
+function getLanguageFromLI(li: HTMLLIElement): LanguageObject {
     let full;
     let main;
     let dialect = null;
@@ -78,7 +78,7 @@ function getLanguageFromLI(li): LanguageObject {
     return { full, main, dialect };
 }
 
-async function main() {
+async function main(): Promise<Array<LanguageObject>> {
     const document = await getHomePage();
 
     const mainList = getMainList(document);

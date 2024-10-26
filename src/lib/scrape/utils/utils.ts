@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 export const HOME_URL = 'https://www.omniglot.com/soundfiles/';
 
@@ -11,7 +11,7 @@ const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:131.0) Geck
  * text
  * @param {string} url - the url of the resource to fetch
  */
-export async function get(url) {
+export async function get(url: string): Promise<AxiosResponse> {
     // make the request. specifying the header seems to reduce the probability of
     // getting a 403 ('forbidden', i.e. server understood the request but refused to
     // process it)
