@@ -51,6 +51,8 @@ export interface LanguageResources {
     language:   LanguageResourceURL;
 }
 
+export type LanguageToResourceMap = Map<LanguageObject, LanguageResources>;
+
 /**
  * A `Document` for the page at https://www.omniglot.com/soundfiles/
  */

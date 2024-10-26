@@ -1,7 +1,7 @@
 import { JSDOM } from 'jsdom';
 
 import { HOME_URL, get } from '../utils/utils';
-import { LanguageObject, LanguageResources, HomeDocument } from './types';
+import { LanguageObject, LanguageResources, LanguageToResourceMap, HomeDocument } from './types';
 
 async function getHomePage(): Promise<HomeDocument> {
     const resp = await get(HOME_URL);
@@ -102,14 +102,34 @@ async function getMainLIs(): Promise<HTMLLIElement[]> {
     return lis;
 }
 
+const mapLanguages = (lis) => lis.map(getLanguageFromLI);
+
 async function getLanguages(): Promise<LanguageObject[]> {
     const lis = await getMainLIs();
-    return lis.map(getLanguageFromLI);
+    return mapLanguages(lis);
 }
+
+const mapResources = (lis) => lis.map(getResourceFromLI);
 
 async function getResources(): Promise<LanguageResources[]> {
     const lis = await getMainLIs();
-    return lis.map(getResourceFromLI);
+    return mapResources(lis);
+}
+
+/**
+ * @returns A complete map wherein the keys are {@link LanguageObject}s and the
+ * values are {@link LanguageResources}
+ */
+async function getLanguagesAndResources(): Promise<LanguageToResourceMap> {
+    const lis = await getMainLIs();
+
+    const languages = mapLanguages(lis);
+    const resources = mapResources(lis);
+
+    // Create pairs from each entry in 'languages' and 'resources'
+    const pairs = languages.map((lang, index) => [lang, resources[index]]);
+
+    return new Map(pairs)
 }
 
 async function main(): Promise<LanguageObject[]> {
