@@ -78,6 +78,26 @@ function getLanguageFromLI(li: HTMLLIElement): LanguageObject {
     return { full, main, dialect };
 }
 
+function getResourceFromLI(li: HTMLLIElement): LanguageResources {
+    // within the <li> are three <a>s whose hrefs direct us to resources for the
+    // given language.
+    const anchorsCollection = li.getElementsByTagName('a');
+    const anchorsArray = Array.from(anchorsCollection);
+
+    // get the hrefs. these are relative, e.g. '../language/phrases/zulu.php', so we
+    // need to build the entire url
+    const hrefs = anchorsArray.map((a) => a.href);
+
+    // see https://stackoverflow.com/a/51168403
+    const urls = hrefs.map((href) => new URL(href, HOME_URL).href);
+
+    // in terms of pure text, the hyperlinks appear like so:
+    // 'recordings | phrases | language'
+    const [recordings, phrases, language] = urls;
+
+    return { recordings, phrases, language }
+}
+
 async function main(): Promise<Array<LanguageObject>> {
     const document = await getHomePage();
 
