@@ -132,6 +132,25 @@ async function getLanguagesAndResources(): Promise<LanguageToResourceMap> {
     return new Map(pairs)
 }
 
+/**
+ * @param obj
+ * @returns The resources corresponding to the given language in the {@link obj} param
+ */
+async function getResourceFromLanguage(obj: LanguageObject): Promise<LanguageResources> {
+    // grab the full language name
+    const { full } = obj;
+
+    // grab the <li>s
+    const lis = await getMainLIs();
+
+    // grab the <li> which has the given full language name in it
+    const li = lis.find(el => el.textContent.includes(full));
+
+    // convert the <li> into a resource, and return it
+    const resource = getResourceFromLI(li);
+    return resource;
+}
+
 async function main(): Promise<LanguageObject[]> {
     const lis = await getMainLIs();
 
