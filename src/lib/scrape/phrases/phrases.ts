@@ -2,6 +2,7 @@ import { toHTML, urljoin } from "../utils/utils";
 import { BASE_URL, getPage } from "../pages/pages";
 import { PhrasesURL } from "../languages/types";
 import { PagesDocument } from "../pages/types";
+import { PhraseData, TargetLanguagePhrase } from "./types";
 
 async function getPhrasesPage(url: PhrasesURL): Promise<PagesDocument> {
     return getPage(url);
@@ -29,7 +30,7 @@ function getRows(table: HTMLTableElement): HTMLTableRowElement[] {
 /**
  * @returns The phrase data parsed from {@link td}
  */
-function parsePhrases(td: HTMLTableCellElement) {
+function parsePhrases(td: HTMLTableCellElement): TargetLanguagePhrase[] {
     // i noticed in the dom there are sometimes rogue <audio> elements which are
     // greyed out. they have the same href as the accompanying <a>. so i think it's
     // probably safest to remove it? idk
@@ -72,7 +73,7 @@ function parsePhrases(td: HTMLTableCellElement) {
     return data;
 }
 
-function getPhraseData(row: HTMLTableRowElement) {
+function getPhraseData(row: HTMLTableRowElement): PhraseData {
     // the row has two <td>s - one for the english phrase, and one for the equivalents
     // in the other language
     const [ englishData, otherData ] = row.getElementsByTagName('td');
