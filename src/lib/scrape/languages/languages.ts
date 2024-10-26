@@ -1,6 +1,6 @@
 import { JSDOM } from 'jsdom';
 
-import { HOME_URL, get } from './utils';
+import { HOME_URL, get } from '../utils/utils';
 
 /**
  * A `Document` for the page at {@link HOME_URL}
