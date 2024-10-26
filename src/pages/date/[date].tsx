@@ -11,7 +11,7 @@ export async function getStaticProps() {
     const resources = await getResources();
 
     // Props will be passed to page component
-    return { props: { languages, resources } }
+    return { props: { languages, resources } };
 }
 
 /**
@@ -28,14 +28,16 @@ export async function getStaticProps() {
  * @returns Data indicating that nothing needs to be created at build time
  * @see {@link https://stackoverflow.com/a/65783200}
  */
-export const getStaticPaths = async () =>  ({
+export const getStaticPaths = async () => ({
     paths: [], // indicates that no page needs be created at build time
     fallback: 'blocking' //indicates the type of fallback
 });
 
-export default function DatePage() {
+export default function DatePage(props) {
     const router = useRouter();
     const { date } = router.query;
+
+    const { languages, resources } = props;
 
     return (
         <div>
